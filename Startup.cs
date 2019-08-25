@@ -10,8 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Docs.Models;
 using Microsoft.EntityFrameworkCore;
+using Docs.Models;
+using Docs.Services;
 
 namespace Docs
 {
@@ -27,6 +28,7 @@ namespace Docs
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<PostService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var connectionString = "Server=localhost;Database=DocsDB;User Id=sa;Password=Passw0rd!";
             services.AddDbContext<DocsContext>
